@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "test": "hardhat test",
+    "coverage": "hardhat coverage",
+    "deploy": "hardhat run scripts/deploy.js --network localhost"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^3.0.0",
+    "chai": "^4.3.7",
+    "hardhat": "^2.19.0",
+    "solidity-coverage": "^0.8.4"
+  }
+}
