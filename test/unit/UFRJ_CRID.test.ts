@@ -23,7 +23,6 @@ describe("UFRJ_CRID Contract", function () {
         [admin, student1, student2] = await ethers.getSigners();
         const UFRJ_CRID_Factory = await ethers.getContractFactory("UFRJ_CRID", admin);
         cridContract = await UFRJ_CRID_Factory.deploy();
-        await cridContract.deployed();
     } catch (error) {
         console.error('DEPLOYMENT ERROR:', error);
         throw error;
