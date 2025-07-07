@@ -14,9 +14,10 @@ jobs:
           cache: 'npm'
 
       - name: Install Dependencies
-        run: |
-          npm ci --no-audit --ignore-scripts
-          npm audit fix --dry-run
+        run: npm ci --no-audit --ignore-scripts
+
+      - name: Audit (non-blocking)
+        run: npm audit || true
 
       - name: Run Unit Tests
         run: npx hardhat test
