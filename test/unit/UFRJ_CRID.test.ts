@@ -19,15 +19,16 @@ describe("UFRJ_CRID Contract", function () {
 
     // Hook que roda antes de cada teste para garantir um estado limpo
     beforeEach(async function () {
-        // Obtém as contas de teste
+    try {
         [admin, student1, student2] = await ethers.getSigners();
-
-        // Implanta uma nova instância do contrato
         const UFRJ_CRID_Factory = await ethers.getContractFactory("UFRJ_CRID", admin);
         cridContract = await UFRJ_CRID_Factory.deploy();
         await cridContract.deployed();
+    } catch (error) {
+        console.error('DEPLOYMENT ERROR:', error);
+        throw error;
+    }
     });
-
     describe("Deployment", function () {
         it("Should set the deployer as the admin", async function () {
             expect(await cridContract.admin()).to.equal(admin.address);
