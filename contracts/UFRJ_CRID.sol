@@ -54,7 +54,7 @@ contract UFRJ_CRID {
         if (_newState == EnrollmentState.CONFIRMADA) {
             require(
                 enrollment.state == EnrollmentState.PENDENTE,
-                "So pode confirmar de PENDENTE"
+                "Transicao invalida: So pode confirmar de PENDENTE"
             );
             require(
                 course.confirmedCount < course.maxCapacity,
@@ -70,6 +70,11 @@ contract UFRJ_CRID {
             if (enrollment.state == EnrollmentState.CONFIRMADA) {
                 course.confirmedCount--;
             }
+        } else {
+            require(
+                enrollment.lastUpdated == 0,
+                "So pode definir PENDENTE em nova inscricao"
+            );
         }
 
         enrollment.state = _newState;
@@ -80,6 +85,7 @@ contract UFRJ_CRID {
     // View function to check capacity
     function getRemainingSlots(string memory _code) external view returns (uint256) {
         Course memory course = courses[_code];
+        require(course.maxCapacity > 0, "Disciplina nao existe");
         return course.maxCapacity - course.confirmedCount;
     }
 }
