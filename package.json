@@ -5,13 +5,16 @@
     "deploy": "hardhat run scripts/deploy.js --network localhost"
   },
   "devDependencies": {
-    "@nomicfoundation/hardhat-toolbox": "^3.0.0",
     "@nomicfoundation/hardhat-ethers": "^3.0.0",
+    "@nomicfoundation/hardhat-toolbox": "^3.0.0",
     "@typechain/ethers-v6": "^0.4.0",
     "@typechain/hardhat": "^8.0.0",
+    "@types/node": "^24.0.10",
     "chai": "^4.3.7",
     "hardhat": "^2.19.0",
     "solidity-coverage": "^0.8.4",
-    "typechain": "^8.3.0"
+    "ts-node": "^10.9.2",
+    "typechain": "^8.3.0",
+    "typescript": "^5.8.3"
   }
 }
