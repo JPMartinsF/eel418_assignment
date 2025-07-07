@@ -54,7 +54,7 @@ contract UFRJ_CRID {
         if (_newState == EnrollmentState.CONFIRMADA) {
             require(
                 enrollment.state == EnrollmentState.PENDENTE,
-                "Transicao invalida: So pode confirmar de PENDENTE"
+                "So pode confirmar de PENDENTE"
             );
             require(
                 course.confirmedCount < course.maxCapacity,
