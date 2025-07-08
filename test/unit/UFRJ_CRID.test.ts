@@ -1,9 +1,8 @@
 import { expect } from "chai";
 import { ethers } from "hardhat";
-import { UFRJ_CRID } from "../typechain-types"; // Importa os tipos gerados pelo Hardhat
+import { UFRJ_CRID } from "../typechain-types";
 import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 
-// Enum para corresponder ao do contrato, facilitando a leitura dos testes
 enum EnrollmentState {
     PENDENTE,
     CONFIRMADA,
@@ -123,11 +122,14 @@ describe("UFRJ_CRID Contract", function () {
         });
 
         it("Should NOT allow confirming from a state other than PENDENTE", async function() {
-            // Tenta confirmar sem estar pendente
+            await cridContract.connect(student1).updateEnrollment(courseCode, EnrollmentState.PENDENTE);
+            await cridContract.connect(student1).updateEnrollment(courseCode, EnrollmentState.TRANCADA);
+
             await expect(
                 cridContract.connect(student1).updateEnrollment(courseCode, EnrollmentState.CONFIRMADA)
             ).to.be.revertedWith("So pode confirmar de PENDENTE");
         });
+
     });
 
     describe("View Functions", function () {
